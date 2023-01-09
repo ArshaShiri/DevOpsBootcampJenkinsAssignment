@@ -4,3 +4,7 @@
 Configure your application to be built as a Docker image.
 
 * Dockerize your NodeJS app
+
+**Solution**
+
+Added a docker file based on [this](https://hub.docker.com/_/node) image.

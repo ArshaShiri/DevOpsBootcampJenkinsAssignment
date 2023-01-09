@@ -1,17 +1,6 @@
-#### This project is for the Devops bootcamp exercise for
+#### This project is for the Devops bootcamp assignment for Jenkins
 
-#### "Cloud Basics"
+## EXERCISE 1: Dockerize your NodeJS App
+Configure your application to be built as a Docker image.
 
-##### Test
-The project uses jest library for tests. (see "test" script in package.json)
-There is 1 test (server.test.js) in the project that checks whether the main index.html file exists in the project. 
-
-To run the nodejs test:
-
-    npm run test
-
-Make sure to download jest library before running test, otherwise jest command defined in package.json won't be found.
-
-    npm install
-
-In order to see failing test, remove index.html or rename it and run tests.
+* Dockerize your NodeJS app

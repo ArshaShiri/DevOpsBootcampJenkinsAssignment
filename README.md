@@ -87,3 +87,10 @@ After inserting the password we can install the suggested plugins and create a u
     curl -fsSL https://deb.nodesource.com/setup_19.x -o nodesource_setup.sh
     bash nodesource_setup.sh
     apt install nodejs
+
+
+#### Creating the pipeline:
+
+A pipeline named **Node** is created.
+
+![image](https://user-images.githubusercontent.com/18715119/211550035-4088f78e-317b-4796-8912-751ed9cac53e.png)

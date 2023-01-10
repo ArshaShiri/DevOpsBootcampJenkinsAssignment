@@ -26,3 +26,5 @@ You want to test the code, to be sure to deploy only working code. When tests fa
 * Commit to Git
 
 The application version increment must be committed and pushed to a remote Git repository.
+
+**Solution**

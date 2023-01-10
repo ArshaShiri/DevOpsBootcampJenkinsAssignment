@@ -95,3 +95,18 @@ A pipeline named **Node** is created.
 
 ![image](https://user-images.githubusercontent.com/18715119/211551348-698a5764-b0a9-4deb-a490-ad3ce2127014.png)
 
+After creating a dummy Jenkinsfile the build can succeed:
+
+    pipeline {
+        agent any
+
+        stages {
+            stage('dummy') {
+                steps{
+                    echo 'dummy step to test the pipeline...'
+                }
+            }
+        }
+    }
+    
+![image](https://user-images.githubusercontent.com/18715119/211551751-9d95518b-baa5-4399-955b-765c55305a07.png)

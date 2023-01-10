@@ -110,3 +110,24 @@ After creating a dummy Jenkinsfile the build can succeed:
     }
     
 ![image](https://user-images.githubusercontent.com/18715119/211551751-9d95518b-baa5-4399-955b-765c55305a07.png)
+
+
+The `Run tests` stage is added to the Jenkinsfile instead of the dummy stage:
+
+    pipeline {
+        agent any
+
+        stages {
+            stage('Run tests') {
+                steps{
+                    script {
+                        // Enter app directory where all the related files are located.
+                        dir("app") {
+                            sh "npm install"
+                            sh "npm run test"
+                        }
+                    }
+                }
+            }
+        }
+    }

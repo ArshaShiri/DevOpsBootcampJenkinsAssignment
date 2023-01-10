@@ -2,9 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('dummy') {
+        stage('Run tests') {
             steps{
-                echo 'dummy step to test the pipeline...'
+                script {
+                    // Enter app directory where all the related files are located.
+                    dir("app") {
+                        sh "npm install"
+                        sh "npm run test"
+                    }
+                }
             }
         }
     }

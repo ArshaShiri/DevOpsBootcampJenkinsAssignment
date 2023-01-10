@@ -40,7 +40,7 @@ The following droplet is created:
 
 After installing docker, we run the following command to install Jenkins:
 
-    docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins
+    docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins
 
 We also add the following firewall rules:
 
@@ -80,13 +80,16 @@ After inserting the password we can install the suggested plugins and create a u
 ![image](https://user-images.githubusercontent.com/18715119/211547449-ef7ac942-d783-4431-a598-0ac0786d2cb8.png)
 
 
-#### Installing npm & node:
+#### Installing npm & node & docker on the running container:
 
     docker exec -u 0 -it {container-id} bash
     apt install curl
     curl -fsSL https://deb.nodesource.com/setup_19.x -o nodesource_setup.sh
     bash nodesource_setup.sh
     apt install nodejs
+
+    curl https://get.docker.com > dockerinstall && chmod 777 dockerinstall && ./dockerinstall
+    chmod 666 /var/run/docker.sock
 
 
 #### Creating the pipeline:
@@ -182,3 +185,54 @@ The build is successful:
 After adding the docker credentials we proceed to add the step for building docker image.
 
 ![image](https://user-images.githubusercontent.com/18715119/211571856-26ef9cf3-de21-4156-acf9-536c9dcfce9c.png)
+
+The updated Jenkinsfile is:
+
+    pipeline {
+        agent any
+
+        stages {
+            stage('increment version') {
+                steps{
+                    script {
+                        // Enter app directory where all the related files are located.
+                        dir("app") {
+                            // Increment the minor version. Choices are: patch, minor or major
+                            sh "npm version minor"
+
+                            def jsonPackage = readJSON file: 'package.json'
+                            def appVersion = jsonPackage.version
+                            echo "version is incremented to ${appVersion}"
+
+                            env.IMAGE_NAME = "$appVersion-$BUILD_NUMBER"
+                            echo "Docker image name is ${env.IMAGE_NAME}"
+                        }
+                    }
+                }
+            }
+
+            stage('Run tests') {
+                steps{
+                    script {
+                        // Enter app directory where all the related files are located.
+                        dir("app") {
+                            sh "npm install"
+                            sh "npm run test"
+                        }
+                    }
+                }
+            }
+
+            stage('Build and Push docker image') {
+                steps {
+                    withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'USER', passwordVariable: 'PWD')]){
+                        sh "docker build -t arshashiri/demo-app:${IMAGE_NAME} ."
+                        sh "echo ${PWD} | docker login -u ${USER} --password-stdin"
+                        sh "docker push arshashiri/demo-app:${IMAGE_NAME}"
+                    }
+                }
+            }
+        }
+    }
+
+

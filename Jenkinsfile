@@ -13,6 +13,9 @@ pipeline {
                         def jsonPackage = readJSON file: 'package.json'
                         def appVersion = jsonPackage.version
                         echo "version is incremented to ${appVersion}"
+
+                        env.IMAGE_NAME = "$appVersion-$BUILD_NUMBER"
+                        echo "Docker image name is ${env.IMAGE_NAME}"
                     }
                 }
             }
@@ -26,6 +29,16 @@ pipeline {
                         sh "npm install"
                         sh "npm run test"
                     }
+                }
+            }
+        }
+
+        stage('Build and Push docker image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'USER', passwordVariable: 'PWD')]){
+                    sh "docker build -t arshashiri/demo-app:${IMAGE_NAME} ."
+                    sh "echo ${PWD} | docker login -u ${USER} --password-stdin"
+                    sh "docker push arshashiri/demo-app:${IMAGE_NAME}"
                 }
             }
         }

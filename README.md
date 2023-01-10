@@ -178,3 +178,7 @@ The update Jenkisfiles is:
 The build is successful:
 
 ![image](https://user-images.githubusercontent.com/18715119/211569444-73e5ecb9-342f-47fc-999c-90ca42854d98.png)
+
+After adding the docker credentials we proceed to add the step for building docker image.
+
+![image](https://user-images.githubusercontent.com/18715119/211571856-26ef9cf3-de21-4156-acf9-536c9dcfce9c.png)

@@ -139,3 +139,42 @@ The tests can run successfully:
 
 In order to increase the version and use it in other steps, we need to be able to read the `package.json` file after version increment. To read json files, we have to install `Pipeline Utility Steps` plugin on Jenkins. After installation, we update the Jenkinsfile with `increment version` stage.
 
+The update Jenkisfiles is: 
+
+    pipeline {
+        agent any
+
+        stages {
+            stage('increment version') {
+                steps{
+                    script {
+                        // Enter app directory where all the related files are located.
+                        dir("app") {
+                            // Increment the minor version. Choices are: patch, minor or major
+                            sh "npm version minor"
+
+                            def jsonPackage = readJSON file: 'package.json'
+                            def appVersion = jsonPackage.version
+                            echo "version is incremented to ${appVersion}"
+                        }
+                    }
+                }
+            }
+
+            stage('Run tests') {
+                steps{
+                    script {
+                        // Enter app directory where all the related files are located.
+                        dir("app") {
+                            sh "npm install"
+                            sh "npm run test"
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+The build is successful:
+
+![image](https://user-images.githubusercontent.com/18715119/211569444-73e5ecb9-342f-47fc-999c-90ca42854d98.png)

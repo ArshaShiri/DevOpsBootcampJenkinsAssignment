@@ -29,15 +29,14 @@ The application version increment must be committed and pushed to a remote Git r
 
 **Solution:**
 
-Creating Server:
+#### Creating Server:
 
 
 The following droplet is created:
 
 ![image](https://user-images.githubusercontent.com/18715119/211541922-3b364fe6-643c-47a3-8425-5c0eec5a1d68.png)
 
-Installing Jenkins:
-
+#### Installing Jenkins:
 
 After installing docker, we run the following command to install Jenkins:
 
@@ -79,3 +78,12 @@ We can retrieve the password from the mounted volume by:
 After inserting the password we can install the suggested plugins and create a username and password.
 
 ![image](https://user-images.githubusercontent.com/18715119/211547449-ef7ac942-d783-4431-a598-0ac0786d2cb8.png)
+
+
+#### Installing npm & node:
+
+    docker exec -u 0 -it {container-id} bash
+    apt install curl
+    curl -fsSL https://deb.nodesource.com/setup_19.x -o nodesource_setup.sh
+    bash nodesource_setup.sh
+    apt install nodejs

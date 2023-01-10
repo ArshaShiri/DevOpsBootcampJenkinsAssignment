@@ -10,16 +10,14 @@ pipeline {
                         // Increment the minor version. Choices are: patch, minor or major
                         sh "npm version minor"
 
-                        def package = readJSON file: 'package.json'
-                        def appVersion = package.version
+                        def jsonPackage = readJSON file: 'package.json'
+                        def appVersion = jsonPackage.version
                         echo "version is incremented to ${appVersion}"
                     }
                 }
             }
         }
-    }
 
-    stages {
         stage('Run tests') {
             steps{
                 script {

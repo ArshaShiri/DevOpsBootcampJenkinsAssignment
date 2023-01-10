@@ -136,3 +136,6 @@ The `Run tests` stage is added to the Jenkinsfile instead of the dummy stage:
 The tests can run successfully:
 
 ![image](https://user-images.githubusercontent.com/18715119/211553251-e73f89a8-ad2a-4ee6-b228-babca4b5a4d3.png)
+
+In order to increase the version and use it in other steps, we need to be able to read the `package.json` file after version increment. To read json files, we have to install `Pipeline Utility Steps` plugin on Jenkins. After installation, we update the Jenkinsfile with `increment version` stage.
+

@@ -131,3 +131,8 @@ The `Run tests` stage is added to the Jenkinsfile instead of the dummy stage:
             }
         }
     }
+
+
+The tests can run successfully:
+
+![image](https://user-images.githubusercontent.com/18715119/211553251-e73f89a8-ad2a-4ee6-b228-babca4b5a4d3.png)

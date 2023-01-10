@@ -5,7 +5,7 @@ Configure your application to be built as a Docker image.
 
 * Dockerize your NodeJS app
 
-**Solution**
+**Solution:**
 
 Added a docker file based on [this](https://hub.docker.com/_/node) image.
 
@@ -27,4 +27,12 @@ You want to test the code, to be sure to deploy only working code. When tests fa
 
 The application version increment must be committed and pushed to a remote Git repository.
 
-**Solution**
+**Solution:**
+
+Creating Server:
+
+
+The following droplet is created:
+
+![image](https://user-images.githubusercontent.com/18715119/211541922-3b364fe6-643c-47a3-8425-5c0eec5a1d68.png)
+

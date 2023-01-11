@@ -517,3 +517,12 @@ After ssh into the server, we can do a docker login and download the generated i
 After opening the port 3000, the website is reachable!
 
 ![image](https://user-images.githubusercontent.com/18715119/211760691-b0e523fd-eb29-43c0-935a-a33f685301bb.png)
+
+
+## EXERCISE 4: Extract into Jenkins Shared Library
+
+A colleague from another project tells you, they are building a similar Jenkins pipeline and they could use some of your logic. So you suggest creating a Jenkins Shared Library to make your Jenkinsfile code reusable and shareable.
+
+Therefore, you do the following:
+
+* Extract all logic into Jenkins-shared-library with parameters and reference it in Jenkinsfile.

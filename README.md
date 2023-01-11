@@ -497,3 +497,9 @@ The automatic commit to git can be seen:
 The version chanage is indeed reflected in the docker image:
 
 ![image](https://user-images.githubusercontent.com/18715119/211757708-5e5a8787-ff0e-4209-b1b4-56070d44691e.png)
+
+
+## EXERCISE 3: Manually deploy new Docker Image on server
+After the pipeline has run successfully, you:
+
+* Manually deploy the new docker image on the droplet server.

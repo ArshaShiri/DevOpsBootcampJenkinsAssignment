@@ -503,3 +503,15 @@ The version chanage is indeed reflected in the docker image:
 After the pipeline has run successfully, you:
 
 * Manually deploy the new docker image on the droplet server.
+
+**Solution:**
+
+After ssh into the server, we can do a docker login and download the generated image and run it.
+
+
+    # Input username and password after docker login.
+    docker login
+
+    docker run -p 3000:3000 arshashiri/demo-app:1.2.0-39
+
+After opening the port 3000, the website is reachable!

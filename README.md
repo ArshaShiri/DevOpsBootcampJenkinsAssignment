@@ -525,4 +525,53 @@ A colleague from another project tells you, they are building a similar Jenkins 
 
 Therefore, you do the following:
 
-* Extract all logic into Jenkins-shared-library with parameters and reference it in Jenkinsfile.
+* Extract all logic into Jenkins-shared-library with parameters and reference it in Jenkinsfile. The shared library can be found [here](https://github.com/ArshaShiri/DevOpsBootcampJenkinsAssignmentSharedLib.git) and the final Jenkinsfile is as following:
+
+
+        library identifier: 'jenkins-shared-library@main', retriever: modernSCM(
+            [$class: 'GitSCMSource',
+             remote: 'https://github.com/ArshaShiri/DevOpsBootcampJenkinsAssignmentSharedLib.git',
+             credentialsId: 'git-credentials'
+             ]
+        )
+
+        def gv
+
+        pipeline {
+            agent any
+
+            stages {
+
+                stage('increment version') {
+                    steps{
+                        script {
+                            incrementVersion()
+                        }
+                    }
+                }
+
+                stage('Run tests') {
+                    steps{
+                        script {
+                            runTests()
+                        }
+                    }
+                }
+
+                stage('Build and Push docker image') {
+                    steps {
+                        script {
+                            buildAndPushDockerImage()
+                        }
+                    }
+                }
+
+                stage('commit version update to github') {
+                    steps {
+                        script {
+                            commitVersionChangeToGit()
+                        }
+                    }
+                }
+            }
+        }

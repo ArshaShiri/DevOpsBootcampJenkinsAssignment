@@ -515,3 +515,5 @@ After ssh into the server, we can do a docker login and download the generated i
     docker run -p 3000:3000 arshashiri/demo-app:1.2.0-39
 
 After opening the port 3000, the website is reachable!
+
+![image](https://user-images.githubusercontent.com/18715119/211760691-b0e523fd-eb29-43c0-935a-a33f685301bb.png)

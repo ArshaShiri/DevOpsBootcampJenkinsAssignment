@@ -488,3 +488,8 @@ The final Jenkinsfile is as following:
             }
         }
     }
+
+
+The version chanage is indeed reflected in the docker image:
+
+![image](https://user-images.githubusercontent.com/18715119/211757708-5e5a8787-ff0e-4209-b1b4-56070d44691e.png)

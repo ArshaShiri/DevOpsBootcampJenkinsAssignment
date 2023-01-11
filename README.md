@@ -490,6 +490,10 @@ The final Jenkinsfile is as following:
     }
 
 
+The automatic commit to git can be seen:
+
+![image](https://user-images.githubusercontent.com/18715119/211758066-ad920288-a64e-42b5-ae21-34df4b5d8b5e.png)
+
 The version chanage is indeed reflected in the docker image:
 
 ![image](https://user-images.githubusercontent.com/18715119/211757708-5e5a8787-ff0e-4209-b1b4-56070d44691e.png)
